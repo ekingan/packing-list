@@ -1,0 +1,16 @@
+{
+  "development": {
+    "url": {
+      "ENV": "DATABASE_URL"
+    },
+    "ssl": false
+  },
+  "production": {
+    "url": {
+      "ENV": "DATABASE_URL"
+    },
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  }
+}
