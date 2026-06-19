@@ -1,6 +1,12 @@
 import { GetTokenSilentlyOptions } from '@auth0/auth0-react';
 
 type GetToken = (opts?: GetTokenSilentlyOptions) => Promise<string>;
+type ViteEnv = {
+  VITE_AUTH0_AUDIENCE?: string;
+  VITE_API_URL?: string;
+};
+
+const env = (import.meta as ImportMeta & { env: ViteEnv }).env;
 
 async function request<T>(
   path: string,
@@ -9,11 +15,11 @@ async function request<T>(
 ): Promise<T> {
   const token = await getToken({
     authorizationParams: {
-      audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+      audience: env.VITE_AUTH0_AUDIENCE,
     },
   });
 
-  const res = await fetch(`${import.meta.env.VITE_API_URL}${path}`, {
+  const res = await fetch(`${env.VITE_API_URL}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',

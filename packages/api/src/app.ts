@@ -8,6 +8,7 @@ import healthRouter from './routes/health';
 import usersRouter from './routes/users';
 import authRouter from './routes/auth';
 import { AppError } from './errors';
+import path from 'path';
 
 const app = express();
 
